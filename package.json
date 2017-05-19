@@ -9,10 +9,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "ajv": "^5.1.1",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.24.1",
     "babel-preset-es2017": "^6.24.1",
     "babel-register": "^6.24.1",
     "koa": "^2.2.0",
+    "koa-bodyparser": "2",
+    "koa-router": "^7.1.1",
     "nodemon": "^1.11.0"
   }
 }

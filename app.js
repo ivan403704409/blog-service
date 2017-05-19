@@ -1,14 +1,27 @@
-import http from 'http'
+const Koa = require('koa');
+const app = new Koa();
+var bodyParser = require('koa-bodyparser');
+ 
+app.use(bodyParser())
+ 
+// routes
+import tag from './routes/tag'
+app.use(tag.routes()).use(tag.allowedMethods())
 
-const hostname = '127.0.0.1';
-const port = 9099;
 
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello World\n');
+// logger
+app.use((ctx, next) => {
+  const start = new Date;
+  return next().then(() => {
+    const ms = new Date - start;
+    console.log(`${ctx.method} ${ctx.url} - ${ms}`);
+  });
 });
 
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
+
+// response
+app.use(ctx => {
+  ctx.body = 'Hello World';
 });
+
+app.listen(9099);
