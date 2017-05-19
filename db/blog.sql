@@ -39,7 +39,7 @@ create table b_tag(
 	id serial,
 	name varchar(30) not null,
 	ctime timestamp not null default now(),
-	utime timestamp not null,
+	utime timestamp not null default now(),
 	primary key(id)
 );
 comment on table b_tag is '标签表';

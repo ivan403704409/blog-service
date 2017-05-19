@@ -12,6 +12,7 @@ app.use(tag.routes()).use(tag.allowedMethods())
 // logger
 app.use((ctx, next) => {
   const start = new Date;
+  ctx.response.header['Access-Control-Allow-Origin'] = '*'
   return next().then(() => {
     const ms = new Date - start;
     console.log(`${ctx.method} ${ctx.url} - ${ms}`);

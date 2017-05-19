@@ -1,15 +1,12 @@
 // 标签
 import Ajv from 'ajv'
 const ajv = new Ajv()
+import { getTagList } from '../models/tag'
 
 // 获取标签列表
-export function list(ctx, next) {
-	ctx.body = [
-		{id: 1, name: 'js'},
-		{id: 1, name: 'linux'},
-		{id: 1, name: 'python'},
-		{id: 1, name: 'kali'},
-	]
+export async function list(ctx, next) {
+	ctx.response.header['Access-Control-Allow-Origin'] = '*'
+	ctx.body = await getTagList()
 }
 
 // 添加标签
