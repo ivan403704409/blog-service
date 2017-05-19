@@ -5,7 +5,6 @@ import { getTagList } from '../models/tag'
 
 // 获取标签列表
 export async function list(ctx, next) {
-	ctx.response.header['Access-Control-Allow-Origin'] = '*'
 	ctx.body = await getTagList()
 }
 

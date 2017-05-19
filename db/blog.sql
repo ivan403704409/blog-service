@@ -24,6 +24,7 @@ create table b_user(
 	type int not null, -- enum { USER: 1, MANAGER: 2, }
 	stat int not null, -- enum { NORMAL: 1, CLOSED: 2 }
 	ctime timestamp default now(),
+	stat int not null default 1,
 	primary key(id)
 );
 comment on table b_user is '账户表';
@@ -40,6 +41,7 @@ create table b_tag(
 	name varchar(30) not null,
 	ctime timestamp not null default now(),
 	utime timestamp not null default now(),
+	stat int not null default 1,
 	primary key(id)
 );
 comment on table b_tag is '标签表';
@@ -48,6 +50,22 @@ comment on column b_tag.name is '标签名';
 
 
 -- 文章表
+create table b_article(
+	id varchar(30) not null,
+	title varchar(50) not null,
+	content text not null,
+	tag varchar(30),
+	ctime timestamp not null default now(),
+	utime timestamp not null default now(),
+	stat int not null default 1,
+	primary key(id)
+);
+comment on table b_article is '文章表';
+comment on column b_article.id is 'id';
+comment on column b_article.title is '标题';
+comment on column b_article.content is '内容';
+comment on column b_article.tag is 'b_tag的标签id';
+comment on column b_article.stat is '状态';
 
 
 -- 评论表
