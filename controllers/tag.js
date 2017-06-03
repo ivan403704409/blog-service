@@ -1,6 +1,4 @@
 // 标签
-import Ajv from 'ajv'
-const ajv = new Ajv()
 import { getTagList } from '../models/tag'
 
 // 获取标签列表

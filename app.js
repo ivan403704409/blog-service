@@ -1,11 +1,14 @@
-const Koa = require('koa');
+import Koa from 'koa'
+import bodyParser from 'koa-bodyparser'
+
+import routes from './routes'
+
 const app = new Koa();
-var bodyParser = require('koa-bodyparser');
- 
+
+// body处理
 app.use(bodyParser())
 
-
-// cors
+// 跨域处理
 app.use(async (ctx, next) => {
   await next()
   // ctx.set('Access-Control-Allow-Origin', 'http://127.0.0.1:9000')
@@ -16,12 +19,11 @@ app.use(async (ctx, next) => {
   ctx.set("Access-Control-Allow-Headers", "X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept")
 });
 
-// routes
-import tag from './routes/tag'
-import article from './routes/article'
-app.use(tag.routes()).use(tag.allowedMethods())
-app.use(article.routes()).use(article.allowedMethods())
-
+// 路由分配
+Object.keys(routes).forEach(key => {
+  let route = routes[key]
+  app.use(route.routes()).use(route.allowedMethods())
+})
 
 // logger
 app.use((ctx, next) => {
@@ -34,12 +36,8 @@ app.use((ctx, next) => {
 
 
 // response
-app.use(ctx => {
-  ctx.body = 'Hello World';
-});
+// app.use(ctx => {
+//   ctx.body = 'Hello World';
+// });
 
 app.listen(9099);
-
-
-
-
