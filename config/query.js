@@ -1,6 +1,6 @@
 var pg = require('pg')
 
-import {USER, PASSWORD} from '../DATA_BASE_CONFIG.js'
+import {USER, PASSWORD, HOST} from '../DATA_BASE_CONFIG.js'
 // create a config to configure both pooling behavior 
 // and client options 
 // note: all config is optional and the environment variables 
@@ -9,7 +9,7 @@ var config = {
   user: USER, //env var: PGUSER 
   database: 'blog', //env var: PGDATABASE 
   password: PASSWORD, //env var: PGPASSWORD 
-  host: '47.88.158.240', // Server hosting the postgres database 
+  host: HOST, // Server hosting the postgres database 
   port: 5432, //env var: PGPORT 
   max: 10, // max number of clients in the pool 
   idleTimeoutMillis: 30000, // how long a client is allowed to remain idle before being closed 
