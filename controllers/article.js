@@ -1,5 +1,19 @@
 import * as modelArticle from '../models/article'
 
+
+export async function index(ctx, next){
+	let { id } = ctx.request.query
+	let data = await modelArticle.index(id)
+	data = data[0] || null
+	ctx.body = {
+		code: 1,
+		msg: 'success',
+		data,
+	}
+}
+
+
+
 // 添加标签
 const add = async (ctx, next) => {
 	let { title, content, tag} = ctx.request.body
@@ -20,10 +34,18 @@ const add = async (ctx, next) => {
 
 const list = async (ctx, next) => {
 	let data = await modelArticle.list()
+	data.forEach(val => {
+		val.content = val.content.substr(0, 255) + '...'
+	})
 	ctx.body = data
 }
 
 export default {
-	get: [{list}],
-	post: [{add}],
+	GET: {
+		list,
+		index
+	},
+	POST: {
+		add,
+	},
 }

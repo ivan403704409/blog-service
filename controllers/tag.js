@@ -33,6 +33,13 @@ const del = (ctx, next) => {
 }
 
 export default {
-	get: [{list}, { 'list/:id': list }],
-	post: [{add}, {update}, {del}],
+	GET: {
+		list,
+		'list/:id': list,
+	},
+	POST: {
+		add,
+		update,
+		del,
+	},
 }

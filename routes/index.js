@@ -9,12 +9,12 @@ let router = new Router()
 获取所有控制器
 oCtrls = {
 	article: {
-		get: [fn1, fn2, fn3],
-		post: [fn4, fn5]
+		get: {list, index, '/:id': index},
+		post: {fn4, fn5}
 	},
 	tag: {
-		get: [fn1, fn2, fn3],
-		post: [fn4, fn5]
+		get: {fn1, fn2, fn3},
+		post: {fn4, fn5}
 	}
 }
  */
@@ -30,11 +30,10 @@ Object.keys(oCtrls).forEach(ctrlName => {
 	methods.forEach(method => {
 		// 当前路由当前方法的所有处理函数
 		let ctrlHandlers = oCtrls[ctrlName][method]
-		ctrlHandlers.forEach(fn => {
+		Object.keys(ctrlHandlers).forEach(path => {
 			// router[method](path, fn)
-			let path = Object.keys(fn)[0]
-			let handler = fn[path]
-			router[method](`/${ctrlName}/${path}`, handler)
+			let handler = ctrlHandlers[path]
+			router[method.toLowerCase()](`/${ctrlName}/${path}`, handler)
 		})
 	})
 })
