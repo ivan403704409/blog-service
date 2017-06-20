@@ -1,7 +1,7 @@
 import * as modelArticle from '../models/article'
 
 // 添加标签
-export async function add(ctx, next) {
+const add = async (ctx, next) => {
 	let { title, content, tag} = ctx.request.body
 	let id = 2
 	let data = {
@@ -18,7 +18,12 @@ export async function add(ctx, next) {
 	}
 }
 
-export async function list(ctx, next) {
+const list = async (ctx, next) => {
 	let data = await modelArticle.list()
 	ctx.body = data
+}
+
+export default {
+	get: [{list}],
+	post: [{add}],
 }

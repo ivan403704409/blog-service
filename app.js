@@ -1,7 +1,6 @@
 import Koa from 'koa'
 import bodyParser from 'koa-bodyparser'
 
-import routes from './routes'
 
 const app = new Koa();
 
@@ -20,10 +19,9 @@ app.use(async (ctx, next) => {
 });
 
 // 路由分配
-Object.keys(routes).forEach(key => {
-  let route = routes[key]
-  app.use(route.routes()).use(route.allowedMethods())
-})
+import initRoute from './routes'
+initRoute(app)
+
 
 // logger
 app.use((ctx, next) => {
