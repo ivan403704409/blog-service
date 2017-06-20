@@ -3,6 +3,7 @@
 
 ### 编写规范
 统一的导出格式 
+```javascript
 export default {
 	[method]: [
 		{ [path] : handler },
@@ -16,9 +17,13 @@ export default {
 	],
 	...
 }
-
+```
 demo: 
+
+```javascript
 export default {
 	get: [{list}, { 'list/:id': list }],
 	post: [{add}, {update}, {del}],
 }
+
+```
