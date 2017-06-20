@@ -21,7 +21,10 @@ async function query() {
   try {
     let res = await connect.query.apply(connect, arguments)
     return res.rows
-  } finally {
+  } 
+  catch(e){
+    console.log(e)
+  }finally {
     connect.release()
   }
 }
