@@ -6,8 +6,10 @@ export async function index(id) {
 }
 
 // 添加文章
-export async function list() {
-	return await query('select * from b_article order by ctime desc')
+export async function list(tag) {
+	let where = ''
+	if(tag)where = 'where tag=$1'
+	return await query(`select * from b_article ${where} order by ctime desc`, tag ? [tag] : undefined)
 }
 
 

@@ -41,7 +41,7 @@ const add = async (ctx, next) => {
 }
 
 const list = async (ctx, next) => {
-	let data = await modelArticle.list()
+	let data = await modelArticle.list(ctx.request.query.tag)
 	data.forEach(val => {
 		val.content = val.content.substr(0, 255) + '...'
 	})
