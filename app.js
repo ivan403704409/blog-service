@@ -1,3 +1,4 @@
+import 'app-module-path/register'
 import Koa from 'koa'
 import bodyParser from 'koa-bodyparser'
 

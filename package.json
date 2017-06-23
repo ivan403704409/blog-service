@@ -9,7 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "ajv": "^5.1.1",
+    "ajv": "^5.2.0",
+    "app-module-path": "^2.2.0",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.24.1",
     "babel-preset-es2017": "^6.24.1",
     "babel-register": "^6.24.1",
