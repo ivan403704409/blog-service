@@ -1,5 +1,6 @@
 // 标签
-import { getTagList } from '../models/tag'
+import { getTagList } from 'models/tag'
+
 
 // 获取标签列表
 const list = async (ctx, next) => {
@@ -32,14 +33,11 @@ const del = (ctx, next) => {
 	}
 }
 
+
 export default {
-	GET: {
-		list,
-		'list/:id': list,
-	},
-	POST: {
-		add,
-		update,
-		del,
-	},
+	'GET  /list': list,
+	'GET  /list/:id': list,
+	'POST /add': add,
+	'POST /update': update,
+	'POST /del': del,
 }

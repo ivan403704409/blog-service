@@ -5,16 +5,8 @@
 统一的导出格式 
 ```javascript
 export default {
-	[method]: [
-		{ [path] : handler },
-		{ [path2] : handler2 },
-		...
-	],
-	[method2]: [
-		{ [path3] : handler3 },
-		{ [path4] : handler4 },
-		...
-	],
+	'method /path/xxx': handler2,
+	'method /path2/xxx': handler2,
 	...
 }
 ```
@@ -22,8 +14,9 @@ demo:
 
 ```javascript
 export default {
-	get: [{list}, { 'list/:id': list }],
-	post: [{add}, {update}, {del}],
+	'GET  /index': index,
+	'GET  /list': list,
+	'POST /add': add,
 }
 
 ```

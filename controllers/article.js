@@ -1,12 +1,20 @@
-import * as modelArticle from '../models/article'
-
+// 文章
+import * as modelArticle from 'models/article'
+import getById from 'validators/article/getById.js'
 
 export async function index(ctx, next){
+	let { valid, msg } = getById(ctx)
+	if(!valid){
+		ctx.body = msg
+		return
+	}
+
 	let { id } = ctx.request.query
 	let data = await modelArticle.index(id)
 	data = data[0] || null
 	ctx.body = {
-		code: 1,
+		code: 'msg.success',
+		stat: 1,
 		msg: 'success',
 		data,
 	}
@@ -41,11 +49,7 @@ const list = async (ctx, next) => {
 }
 
 export default {
-	GET: {
-		list,
-		index
-	},
-	POST: {
-		add,
-	},
+	'GET  /index': index,
+	'GET  /list': list,
+	'POST /add': add,
 }
